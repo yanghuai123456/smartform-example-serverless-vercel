@@ -1,4 +1,4 @@
-# SmartForm → Vercel Functions Proxy
+# Vercel Functions contact form proxy — Formspree alternative with AI spam filtering
 
 A Vercel Function that receives browser submissions and forwards them to SmartForm AI.
 Use this when you want to keep the form ID out of your public bundle, or add validation
