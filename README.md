@@ -1,4 +1,4 @@
-# Vercel Functions contact form proxy â€” Formspree alternative with AI spam filtering
+# Vercel Functions contact form proxy â€?Formspree alternative with AI spam filtering
 
 A Vercel Function that receives browser submissions and forwards them to SmartForm AI.
 Use this when you want to keep the form ID out of your public bundle, or add validation
@@ -9,11 +9,11 @@ before forwarding.
 The endpoint accepts a standard HTML form POST or JSON via AJAX. Two
 kinds of fields:
 
-**Your form fields** â€” `name`, `email`, `message`, whatever you
+**Your form fields** â€?`name`, `email`, `message`, whatever you
 want. Every non-reserved field lands in your dashboard as a column in
 the submissions table.
 
-**Reserved fields** â€” names starting with `_` are interpreted by
+**Reserved fields** â€?names starting with `_` are interpreted by
 the API, not stored:
 
 | Field | Purpose |
@@ -24,7 +24,7 @@ the API, not stored:
 | ``_subject`` | Override the AI-generated email subject line. Max 200 chars; control characters stripped. |
 | `X-Gotcha` header | Same as `_gotcha` for JSON requests where you can't add a hidden form field. |
 
-Field names are Formspree-compatible â€” migrating from
+Field names are Formspree-compatible â€?migrating from
 `formspree.io/f/{form_id}` requires no renaming.
 
 ## Setup
@@ -32,11 +32,11 @@ Field names are Formspree-compatible â€” migrating from
 1. Get a form ID at https://usesmartform.com/dashboard.
 2. Deploy:
    ```bash
-   git clone https://github.com/yanghuai123456/smartform-example-serverless-vercel.git
+   git clone https://github.com/smartformai/smartform-example-serverless-vercel.git
    cd smartform-example-serverless-vercel
    vercel link
    vercel env add SMARTFORM_ENDPOINT   # https://api.usesmartform.com
-   vercel env add SMARTFORM_FORM_ID    # f_your_real_id
+   vercel env add SMARTFORM_FORM_ID    # your_real_id
    vercel deploy --prod
    ```
 3. Browser calls `POST /api/submit`. The function forwards to SmartForm.
@@ -44,7 +44,7 @@ Field names are Formspree-compatible â€” migrating from
 ## The function
 
 ```ts
-// api/submit.ts â€” Vercel Edge Function
+// api/submit.ts â€?Vercel Edge Function
 export const config = { runtime: 'edge' };
 
 export default async function handler(req: Request) {
@@ -100,7 +100,7 @@ response inline.
 
 ## How the SmartForm API works
 
-- `POST {endpoint}/api/v1/f/{form_id}` â€” JSON or form-data, no API key.
+- `POST {endpoint}/api/v1/f/{form_id}` â€?JSON or form-data, no API key.
 - Response: `{ success, message, submission_id, is_spam, intent, next_url }`.
 
 For the full contract, see https://usesmartform.com/docs.
@@ -112,7 +112,7 @@ For the full contract, see https://usesmartform.com/docs.
 
 Yes. AI spam filtering is enabled by default on every plan. AI intent
 classification and high-value lead detection require a paid plan (Pro
-or Business) â€” the dashboard enforces this and returns HTTP 402 if
+or Business) â€?the dashboard enforces this and returns HTTP 402 if
 you try to enable them on a free workspace.
 
 ### Do I need an API key?
@@ -125,7 +125,7 @@ form ID, which is non-enumerable. The example also includes a hidden
 The function keeps the form ID server-side, lets you add HMAC verification on top of the public endpoint, and runs on the edge runtime for low latency.
 
 ## Related examples
-[Cloudflare Workers proxy](https://github.com/yanghuai123456/smartform-example-serverless-cloudflare) | [Netlify contact form](https://github.com/yanghuai123456/smartform-example-netlify) | [Next.js contact form](https://github.com/yanghuai123456/smartform-example-nextjs)
+[Cloudflare Workers proxy](https://github.com/smartformai/smartform-example-serverless-cloudflare) | [Netlify contact form](https://github.com/smartformai/smartform-example-netlify) | [Next.js contact form](https://github.com/smartformai/smartform-example-nextjs)
 
 
 ## License
